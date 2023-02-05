@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--这是Spring配置文件-->
+    <!--Idea提供文件模板-->
+    <!--文件名可以换，最好放在类路径下、方便后期移植-->
+    <!--配置bean，spring才能帮我们管理bean-->
+    <!--
+        id:不能重复
+    -->
+    <bean id="userBean" class="ltd.regis.spring6.bean.User"/>
+    <bean id="userDaoBean" class="ltd.regis.spring6.dao.UserDaoImplForMySQL" />
+    <bean id="userServiceBean" class="ltd.regis.spring6.service.UserServiceImpl" />
+    <bean id="nowTime" class="java.util.Date"/>
+</beans>

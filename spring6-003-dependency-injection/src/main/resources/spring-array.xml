@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="f1" class="ltd.regis.spring6.bean.Friend">
+        <property name="name" value="GDG" />
+    </bean>
+    <bean id="f2" class="ltd.regis.spring6.bean.Friend">
+        <property name="name" value="YYP" />
+    </bean>
+    <bean id="f3" class="ltd.regis.spring6.bean.Friend">
+        <property name="name" value="YHX" />
+    </bean>
+
+    <bean id="yuQian" class="ltd.regis.spring6.bean.YuQian">
+        <!--数组当中的String是简单类型的，用value注入-->
+        <property name="hobbies">
+            <array>
+                <value>Smoking</value>
+                <value>Drinking</value>
+                <value>Perming</value>
+            </array>
+        </property>
+
+        <!--数组当中的Friend是复杂类型的,用ref注入-->
+        <property name="friends">
+            <array>
+                <ref bean="f1" />
+                <ref bean="f2" />
+                <ref bean="f3" />
+            </array>
+        </property>
+    </bean>
+
+
+</beans>

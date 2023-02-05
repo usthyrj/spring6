@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--基于构造方法产生的循环依赖是无法解决的，所以编写代码时一定要注意-->
+    <bean id="husbandBean1" class="ltd.regis.spring6.bean2.Husband" scope="singleton">
+        <constructor-arg index="0" value="王铁柱"/>
+        <constructor-arg index="1" ref="wifeBean2"/>
+    </bean>
+
+    <bean id="wifeBean2" class="ltd.regis.spring6.bean2.Wife" scope="singleton">
+        <constructor-arg index="0" value="田二妞"/>
+        <constructor-arg index="1" ref="husbandBean1"/>
+    </bean>
+
+</beans>

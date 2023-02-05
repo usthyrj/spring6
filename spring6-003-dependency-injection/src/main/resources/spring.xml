@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userDaoBean" class="ltd.regis.spring6.dao.UserDao" />
+    <bean id="userServiceBean" class="ltd.regis.spring6.service.UserService">
+        <!--
+            name：把set方法后面的方法名首字母变小写
+            ref：引用，set方法的入参，要注入的bean的Id
+            set注入是创建好对象再注入，构造器注入是对象实例化过程中注入的
+        -->
+        <property name="myUserDao" ref="userDaoBean" />
+    </bean>
+</beans>

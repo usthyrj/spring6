@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="ltd.regis.spring6.bean.STudent">
+        <!--把日期类型当做简单类型-->
+        <property name="birth" value="Thu Jan 26 08:03:38 CST 2023"/>
+    </bean>
+
+    <bean id="stu" class="ltd.regis.spring6.bean.STudent">
+        <property name="birth">
+            <bean class="ltd.regis.spring6.bean.DataFactoryBean">
+                <constructor-arg index="0" value="1997-01-01"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!--1. 配置bean的类全路径，会自动调用空参构造-->
+    <bean id="sb" class="ltd.regis.spring6.bean.SpringBean" />
+    <bean id="sb2" class="ltd.regis.spring6.bean.SpringBean">
+        <constructor-arg index="0" value="haha" />
+    </bean>
+
+    <!--2. 通过简单工厂模式（静态工厂方法模式）需要告诉spring用哪个类的哪个方法-->
+    <!--factory-method指定的是工厂类的静态方法-->
+    <bean id="starBean" class="ltd.regis.spring6.bean.StarFactory" factory-method="get"/>
+
+    <!--3. 工厂方法模式，通过factory-bean和factory-method属性来共同完成-->
+    <bean id="gunFactory" class="ltd.regis.spring6.bean.GunFactory" />
+    <bean id="gun" factory-bean="gunFactory" factory-method="get" />
+
+    <!--4. 通过FactoryBean接口进行实例化就是第三种的简化方式，无需配置factory-bean和factory-method-->
+    <!--通过工厂Bean返回普通bean主要是想对bean进行加工处理-->
+    <bean id="person" class="ltd.regis.spring6.bean.PersonFactory" />
+</beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--使用构造注入时，id随意起名，只需与下文 引用相对应，set注入一定要注意id名-->
+    <bean id="xxx" class="ltd.regis.spring6.dao.UserDao" />
+    <bean id="yyy" class="ltd.regis.spring6.dao.VipDao" />
+
+    <bean id="csBean3" class="ltd.regis.spring6.service.CustomerService">
+        <!--构造注入
+            index:0:第一个参数;1:第二个参数
+            用name替换index亦可
+            此时name中是有参构造器的参数名称
+            还可以不指定index和name让spring自动匹配
+        -->
+        <constructor-arg ref="xxx" />
+        <constructor-arg ref="yyy" />
+    </bean>
+
+    <bean id="csBean2" class="ltd.regis.spring6.service.CustomerService">
+        <!--构造注入
+            index:0:第一个参数;1:第二个参数
+            用name替换index亦可
+            此时name中是有参构造器的参数名称
+            还可以不指定index和name让spring自动匹配，实际上是根据类型进行匹配
+        -->
+        <constructor-arg name="userDao" ref="xxx" />
+        <constructor-arg name="vipDao" ref="yyy" />
+    </bean>
+
+    <bean id="csBean" class="ltd.regis.spring6.service.CustomerService">
+        <!--构造注入
+            index:0:第一个参数;1:第二个参数
+            用name替换index亦可
+        -->
+        <constructor-arg index="0" ref="xxx" />
+        <constructor-arg index="1" ref="yyy" />
+    </bean>
+</beans>

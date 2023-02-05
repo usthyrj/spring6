@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="mathBean" class="ltd.regis.spring6.bean.MathBean">
+        <!--实体符号代替特殊符号
+            >   &gt;
+            <   &lt;
+            '   &apos;
+            "   &quot
+            &   &amp;
+
+        -->
+<!--        <property name="result" value="2 &gt;&lt;&apos;&quot;&amp; 3" />-->
+        <property name="result">
+            <!--使用<![CDATA[]]>时只能用value标签，不能用value属性，放在CDATA里面的东西不会被解析-->
+            <value>
+                <![CDATA[<>'"&]]>
+            </value>
+        </property>
+    </bean>
+
+    <bean id="catBean" class="ltd.regis.spring6.bean.Cat">
+        <!--不给属性注入值则默认注入null-->
+<!--        <property name="name" value="tom" />-->
+        <!--以下代码亦可注入null-->
+        <!--<property name="name">
+            <null />
+        </property>-->
+
+        <!--注入空字符串可以value="",还可以如下操作-->
+        <property name="name">
+            <value />
+        </property>
+        <property name="age" value="3" />
+    </bean>
+
+    <!--让spring管理数据源-->
+    <bean id="myDataSource" class="ltd.regis.spring6.jdbc.MyDataSource">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/spring6" />
+        <property name="username" value="root" />
+        <property name="password" value="1234" />
+    </bean>
+
+    <!--测试哪些类型是简单类型-->
+    <bean id="svt" class="ltd.regis.spring6.bean.SimpleValueType">
+        <property name="age" value="1" />
+        <property name="age2" value="2" />
+        <property name="flag" value="true" />
+        <property name="flag2" value="false" />
+        <property name="c" value="c" />
+        <property name="c2" value="d" />
+        <property name="season" value="WINTER" />
+        <property name="username" value="erha" />
+        <property name="clazz" value="ltd.regis.spring6.bean.User" />
+        <!--将Date当成简单类型用value赋值时，格式有要求可以是Tue Jan 24 08:40:11 CST 2023，或/分割的年份-->
+        <!--在实际开发中不会把Date当成简单类型，而是用ref进行赋值-->
+        <property name="birth" value="Tue Jan 24 08:40:11 CST 2023" />
+<!--        <property name="birth" value="1997/01/01 12:23:59" />-->
+    </bean>
+
+
+    <!--注入简单类型-->
+    <bean id="userBean" class="ltd.regis.spring6.bean.User">
+        <property name="username" value="张三" />
+        <property name="password" value="123" />
+        <property name="age" value="23" />
+    </bean>
+
+    <!--声明外部bean-->
+    <bean id="orderDaoBean" class="ltd.regis.spring6.dao.OrderDao"/>
+    <bean id="orderServiceBean" class="ltd.regis.spring6.service.OrderService">
+        <!--使用ref属性引入注入外部bean-->
+        <property name="orderDao" ref="orderDaoBean"/>
+    </bean>
+
+    <bean id="orderServiceBean2" class="ltd.regis.spring6.service.OrderService">
+        <!--property中嵌套bean即为内部bean-->
+        <property name="orderDao" >
+            <bean class="ltd.regis.spring6.dao.OrderDao" />
+        </property>
+    </bean>
+</beans>

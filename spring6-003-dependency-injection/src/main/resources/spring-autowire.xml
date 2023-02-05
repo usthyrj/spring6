@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!--    根据类型自动装配-->
+    <!--自动装配是基于set方法的-->
+    <bean class="ltd.regis.spring6.dao.VipDao" />
+    <bean id="x" class="ltd.regis.spring6.dao.UserDao" />
+    <!--g根据类型自动装配的缺陷：这个类型的bean只能有一个-->
+<!--    <bean id="y" class="ltd.regis.spring6.dao.UserDao" />-->
+    <bean id="cs" class="ltd.regis.spring6.service.CustomerService" autowire="byType"/>
+
+    <!--普通set注入-->
+    <!--<bean id="orderDao" class="ltd.regis.spring6.dao.OrderDao" />
+
+    <bean id="orderService" class="ltd.regis.spring6.service.OrderService">
+        <property name="orderDao" ref="orderDao" />
+    </bean>-->
+    <!--根据名字自动装配-->
+    <!--自动装配也是基于set方法实现的-->
+    <bean id="orderService" class="ltd.regis.spring6.service.OrderService" autowire="byName" />
+
+    <!--id一般也叫bean的吗-->
+    <!--根据名字自动装配时，被装配的beanid一定是set方法名的首字母小写的后半部分-->
+    <bean id="orderDao" class="ltd.regis.spring6.dao.OrderDao" />
+
+
+</beans>

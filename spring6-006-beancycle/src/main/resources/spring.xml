@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置Bean后处理器-->
+    <!--bean后处理器将作用于配置文件中所有的bean-->
+    <bean class="ltd.regis.spring6.bean.LogBeanPostProcessor"/>
+
+    <bean scope="prototype" id="user" class="ltd.regis.spring6.bean.User" init-method="initBean" destroy-method="destroyBean">
+        <property name="name" value="erha"/>
+    </bean>
+    <bean id="factory" class="org.springframework.beans.factory.support.DefaultListableBeanFactory"/>
+
+<!--    <bean id="vip" class="ltd.regis.spring6.bean.Vip"/>-->
+<!--    <bean id="person" class="ltd.regis.spring6.bean.Person"/>-->
+
+</beans>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--singleton + setter模式下的循环依赖,spring是没有问题的-->
+    <!--
+        singleton + setter模式下的循环依赖w为什么没有问题？
+            这种模式下spring对bean的管理主要分为清晰地两个阶段，
+                1.在spring容器加载时候实例化bean，只要其中任意一个Bean实例化后马上进行曝光，（不等属性赋值就曝光）
+                2.曝光之后再进行属性赋值
+            核心解决方案：实例化对象和和对象属性赋值分为两个阶段来完成。
+            只有在scope是singleton的情况下Bean才会采取提前曝光的措施
+    -->
+
+    <!--prototype + setter模式下的循环依赖，存在问题会出现异常-->
+    <!--BeanCurrentlyInCreationException
+        当前bean处于创建中异常
+    -->
+    <!--当两个bean都是prototype才会出现异常，其中任意一个是singleton的则不会出现异常-->
+    <bean id="husbandBean" class="ltd.regis.spring6.bean.Husband" scope="singleton">
+        <property name="name" value="王铁柱"/>
+        <property name="wife" ref="wifeBean"/>
+    </bean>
+
+    <bean id="wifeBean" class="ltd.regis.spring6.bean.Wife" scope="prototype">
+        <property name="name" value="田二妞"/>
+        <property name="husband" ref="husbandBean"/>
+    </bean>
+
+</beans>

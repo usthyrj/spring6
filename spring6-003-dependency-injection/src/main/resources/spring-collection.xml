@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="personBean" class="ltd.regis.spring6.bean.Person">
+        <property name="names">
+            <list>
+                <value>张三</value>
+                <value>李四</value>
+                <value>王五</value>
+                <value>赵六</value>
+            </list>
+        </property>
+
+        <property name="address">
+            <set>
+                <value>张三</value>
+                <value>张三</value>
+                <value>李四</value>
+                <value>ww</value>
+            </set>
+        </property>
+
+        <property name="phones">
+            <map>
+                <!--key和value不是简单类型就用key-ref和value-ref-->
+                <entry key="1" value="123" />
+                <entry key="2" value="321" />
+                <entry key="3" value="1234567" />
+                <entry key="4" value="7654321" />
+            </map>
+        </property>
+        <!--properties和Map注入方式不同，使用Map也不报错，尚未研究，Properties的key和value只能是字符串-->
+        <property name="properties">
+            <props>
+                <prop key="11">111</prop>
+                <prop key="22">222</prop>
+                <prop key="33">333</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+        <!--纳入IoC-->
+        <bean id="userService" class="ltd.regis.spring6.service.UserService"/>
+        <bean id="timerAspect" class="ltd.regis.spring6.service.TimerAspect"/>
+
+        <!--aop配置-->
+        <aop:config>
+            <!--切点表达式-->
+            <aop:pointcut id="normalPointCut" expression="execution(* *(..))"/>
+            <!--切面 = 通知 + 切点-->
+            <aop:aspect ref="timerAspect">
+                <aop:around method="arounbdAdvice" pointcut-ref="normalPointCut"/>
+            </aop:aspect>
+        </aop:config>
+
+
+    <!--以下代码未用到注解，无需添加-->
+        <!--&lt;!&ndash;包扫描&ndash;&gt;
+        <context:component-scan base-package="ltd.regis.spring6.service"/>
+        &lt;!&ndash;对@Aspectj注解风格自动代理并开启cglib&ndash;&gt;
+        <aop:aspectj-autoproxy proxy-target-class="true"/>-->
+
+</beans>
