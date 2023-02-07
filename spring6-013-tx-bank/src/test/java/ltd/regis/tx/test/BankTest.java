@@ -20,6 +20,14 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class BankTest {
 
     @Test
+    public void testPropagation() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        AccountService accountService = context.getBean("accountService", AccountService.class);
+        Account act = new Account("act-003", 1000.00);
+        accountService.save(act);
+    }
+
+    @Test
     public void testException() {
 
     }

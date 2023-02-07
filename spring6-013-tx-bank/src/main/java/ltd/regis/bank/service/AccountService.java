@@ -11,4 +11,10 @@ public interface AccountService {
      * @param money 转账金额
      */
     void transfer(String fromActno, String toActno, double money);
+
+    /**
+     * 保存账户信息
+     * @param act
+     */
+    void save(Account act);
 }
