@@ -23,8 +23,10 @@
         <module name="spring6-011-spring-aspectj-aop-xml" />
         <module name="spring6-010-spring-aspectj-aop-annotation" />
         <module name="spring6-013-tx-bank" />
+        <module name="spring6-015-junit" />
         <module name="spring6-007-cicular-denpendency" />
         <module name="review-reflect" />
+        <module name="spring6-014-tx-bank-xml" />
         <module name="spring6-001-revelation" />
         <module name="static-proxy" />
         <module name="dynamic-proxy-cglib" />

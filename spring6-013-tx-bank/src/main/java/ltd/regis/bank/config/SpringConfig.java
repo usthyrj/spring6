@@ -52,7 +52,7 @@ public class SpringConfig {
 
     @Bean("jdbcTemplate")
     public JdbcTemplate getJdbcTemplate(DataSource druidSource) {
-        System.out.println(druidSource);
+//        System.out.println(druidSource);
         return new JdbcTemplate(druidSource);
     }
 
