@@ -29,6 +29,7 @@
         <option value="$PROJECT_DIR$/spring6-013-tx-bank/pom.xml" />
         <option value="$PROJECT_DIR$/spring6-014-tx-bank-xml/pom.xml" />
         <option value="$PROJECT_DIR$/spring6-015-junit/pom.xml" />
+        <option value="$PROJECT_DIR$/spring6-016-spring-mybatis/pom.xml" />
       </list>
     </option>
   </component>
